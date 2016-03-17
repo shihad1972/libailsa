@@ -4,6 +4,7 @@
 AC_PREREQ([2.69])
 AC_INIT([ailsalib], [0.1], [iain@ailsatech.net])
 AC_CONFIG_SRCDIR([lib/data.c])
+AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_HEADERS([include/config.h])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 
