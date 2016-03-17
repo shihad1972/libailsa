@@ -3,13 +3,19 @@
 
 AC_PREREQ([2.69])
 AC_INIT([ailsalib], [0.1], [iain@ailsatech.net])
-AC_CONFIG_SRCDIR([include/config.h])
-AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_SRCDIR([lib/data.c])
+AC_CONFIG_HEADERS([include/config.h])
+AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+
+# Add m4 macros direcotry
+AC_CONFIG_MACRO_DIR([m4])
 
 # Checks for programs.
 AC_PROG_CC
+AM_PROG_AR
 
 # Checks for libraries.
+LT_INIT
 
 # Checks for header files.
 AC_CHECK_HEADERS([fcntl.h stdlib.h string.h syslog.h unistd.h])

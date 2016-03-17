@@ -6,6 +6,7 @@
 RM = rm -f
 ECHO = echo
 DIR = lib
+SUBDIRS = lib
 ACLOCAL_AMFLAGS = -I m4
 
 BUILT_SOURCES =
