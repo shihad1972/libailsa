@@ -75,7 +75,7 @@ typedef struct ailsa_element_s {
 	struct	ailsa_element_s *prev;
 	struct	ailsa_element_s *next;
 	void	*data;
-} AILELEM;
+} AILSAELEM;
 
 typedef struct ailsa_list_s {
 	size_t 	total;
@@ -83,7 +83,7 @@ typedef struct ailsa_list_s {
 	void 	(*destroy)(void *data);
 	void 	*head;
 	void 	*tail;
-} AILLIST;
+} AILSALIST;
 
 // Hash table types
 
@@ -93,26 +93,26 @@ typedef struct ailsa_hash_s {
 	int		(*match)(const void *key1, const void *key2);
 	void		(*destroy)(void *data);
 	unsigned int	size;
-	AILLIST		*table;
-} AILHASH;
+	AILSALIST		*table;
+} AILSAHASH;
 
-// AIL_ data functions;
+// AILSA_ data functions;
 
 // Linked List
 void
-ailsa_list_init(AILLIST *list, void (*destory)(void *data));
+ailsa_list_init(AILSALIST *list, void (*destory)(void *data));
 
 void
-ailsa_list_destroy(AILLIST *list);
+ailsa_list_destroy(AILSALIST *list);
 
 int
-ailsa_list_ins_next(AILLIST *list, AILELEM *element, void *data);
+ailsa_list_ins_next(AILSALIST *list, AILSAELEM *element, void *data);
 
 int
-ailsa_list_ins_prev(AILLIST *list, AILELEM *element, void *data);
+ailsa_list_ins_prev(AILSALIST *list, AILSAELEM *element, void *data);
 
 int
-ailsa_list_remove(AILLIST *list, AILELEM *element, void **data);
+ailsa_list_remove(AILSALIST *list, AILSAELEM *element, void **data);
 
 // Hash Table
 
@@ -120,22 +120,22 @@ unsigned int
 ailsa_hash(const void *key);
 
 int
-ailsa_hash_init(AILHASH *htbl, unsigned int buckets,
+ailsa_hash_init(AILSAHASH *htbl, unsigned int buckets,
 		unsigned int (*h)(const void *key),
 		int (*match)(const void *key1, const void *key2),
 		void (*destroy)(void *data));
 
 void
-ailsa_hash_destroy(AILHASH *htbl);
+ailsa_hash_destroy(AILSAHASH *htbl);
 
 int
-ailsa_hash_insert(AILHASH *htbl, void *data, const char *key);
+ailsa_hash_insert(AILSAHASH *htbl, void *data, const char *key);
 
 int
-ailsa_hash_remove(AILHASH *htbl, void **data, const char *key);
+ailsa_hash_remove(AILSAHASH *htbl, void **data, const char *key);
 
 int
-ailsa_hash_lookup(AILHASH *htbl, void **data, const char *key);
+ailsa_hash_lookup(AILSAHASH *htbl, void **data, const char *key);
 
 // Path and various string functions
 
