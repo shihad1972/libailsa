@@ -1,7 +1,7 @@
 /*
  *
  *  alisalib: Alisatech Data library
- *  Copyright (C) 2015 Iain M Conochie <iain-AT-thargoid.co.uk>
+ *  Copyright (C) 2016 Iain M Conochie <iain-AT-thargoid.co.uk>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by

@@ -1,5 +1,5 @@
 /*
- *  ailsacmdb: Ailsatech Configuration Management Database library
+ *  ailsalib: Ailsatech library
  *  Copyright (C) 2012 - 2015  Iain M Conochie <iain-AT-thargoid.co.uk>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
- *  ailsacmdb.h: Main ailsacmdb library header file
+ *  ailsalib.h: Main ailsalib library header file
  */
 
 #ifndef __AILSALIB_H__
@@ -79,7 +79,7 @@ typedef struct ailsa_element_s {
 
 typedef struct ailsa_list_s {
 	size_t 	total;
-	int 	(*cmd)(const void *key1, const void *key2);
+	int 	(*cmp)(const void *key1, const void *key2);
 	void 	(*destroy)(void *data);
 	void 	*head;
 	void 	*tail;
