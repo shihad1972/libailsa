@@ -1,6 +1,7 @@
 #
 # Makefile
 #
+CC = c99
 RM = rm -f
 LIBDIR = lib
 SUBDIRS = lib

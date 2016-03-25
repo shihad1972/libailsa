@@ -38,7 +38,7 @@
 // Linked List functions
 
 void
-ailsa_list_init(AILSALIST *list, void (*destroy)(void *data))
+ailsa_list_init(AILSA_LIST *list, void (*destroy)(void *data))
 {
 	list->total = 0;
 	list->destroy = destroy;
@@ -47,7 +47,7 @@ ailsa_list_init(AILSALIST *list, void (*destroy)(void *data))
 }
 
 void
-ailsa_list_destroy(AILSALIST *list)
+ailsa_list_destroy(AILSA_LIST *list)
 {
 	void *data;
 
@@ -57,15 +57,15 @@ ailsa_list_destroy(AILSALIST *list)
 			list->destroy(data);
 		}
 	}
-	memset(list, 0, sizeof(AILSALIST));
+	memset(list, 0, sizeof(AILSA_LIST));
 	return;
 }
 
 int
-ailsa_list_ins_next(AILSALIST *list, AILSAELEM *element, void *data)
+ailsa_list_ins_next(AILSA_LIST *list, AILSA_ELEM *element, void *data)
 {
-	size_t size = sizeof(AILSAELEM);
-	AILSAELEM *new;
+	size_t size = sizeof(AILSA_ELEM);
+	AILSA_ELEM *new;
 
 	if (!(element) && list->total != 0)
 		return -1;
@@ -90,10 +90,10 @@ ailsa_list_ins_next(AILSALIST *list, AILSAELEM *element, void *data)
 }
 
 int
-ailsa_list_ins_prev(AILSALIST *list, AILSAELEM *element, void *data)
+ailsa_list_ins_prev(AILSA_LIST *list, AILSA_ELEM *element, void *data)
 {
-	size_t size = sizeof(AILSAELEM);
-	AILSAELEM *new;
+	size_t size = sizeof(AILSA_ELEM);
+	AILSA_ELEM *new;
 
 	if (!(element) && list->total != 0)
 		return -1;
@@ -118,7 +118,7 @@ ailsa_list_ins_prev(AILSALIST *list, AILSAELEM *element, void *data)
 }
 
 int
-ailsa_list_remove(AILSALIST *list, AILSAELEM *element, void **data)
+ailsa_list_remove(AILSA_LIST *list, AILSA_ELEM *element, void **data)
 {
 	if (!(element) || list->total == 0)
 		return -1;
@@ -172,14 +172,14 @@ ailsa_hash(const void *key)
 	destory:	removes an individual linked list
  */
 int
-ailsa_hash_init(AILSAHASH *htbl, unsigned int buckets,
+ailsa_hash_init(AILSA_HASH *htbl, unsigned int buckets,
 		unsigned int (*h)(const void *key),
 		int (*match)(const void *key1, const void *key2),
 		void (*destroy)(void *data))
 {
 	unsigned int i;
 
-	htbl->table = ailsa_calloc(buckets * sizeof(AILSALIST), "htbl->table in ailsa_hash_init");
+	htbl->table = ailsa_calloc(buckets * sizeof(AILSA_LIST), "htbl->table in ailsa_hash_init");
 	htbl->buckets = buckets;
 	htbl->size = 0;
 	for (i = 0; i < buckets; i++)
@@ -191,18 +191,18 @@ ailsa_hash_init(AILSAHASH *htbl, unsigned int buckets,
 }
 
 void
-ailsa_hash_destroy(AILSAHASH *htbl)
+ailsa_hash_destroy(AILSA_HASH *htbl)
 {
 	unsigned int i;
 
 	for (i = 0; i < htbl->buckets; i++)
 		ailsa_list_destroy(&htbl->table[i]);
 	my_free(htbl->table);
-	memset(htbl, 0, sizeof(AILSAHASH));
+	memset(htbl, 0, sizeof(AILSA_HASH));
 }
 
 int
-ailsa_hash_insert(AILSAHASH *htbl, void *data, const char *key)
+ailsa_hash_insert(AILSA_HASH *htbl, void *data, const char *key)
 {
 	unsigned int	bucket;
 	int		retval;
@@ -216,9 +216,9 @@ ailsa_hash_insert(AILSAHASH *htbl, void *data, const char *key)
 }
 
 int
-ailsa_hash_remove(AILSAHASH *htbl, void **data, const char *key)
+ailsa_hash_remove(AILSA_HASH *htbl, void **data, const char *key)
 {
-	AILSAELEM 	*em, *prev;
+	AILSA_ELEM 	*em, *prev;
 	unsigned int	bucket;
 
 	bucket = htbl->h(key) % htbl->buckets;
@@ -238,9 +238,9 @@ ailsa_hash_remove(AILSAHASH *htbl, void **data, const char *key)
 }
 
 int
-ailsa_hash_lookup(AILSAHASH *htbl, void **data, const char *key)
+ailsa_hash_lookup(AILSA_HASH *htbl, void **data, const char *key)
 {
-	AILSAELEM 	*em;
+	AILSA_ELEM 	*em;
 	unsigned int	bucket;
 
 	bucket = htbl->h(key) % htbl->buckets;

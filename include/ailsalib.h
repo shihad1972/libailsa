@@ -1,6 +1,6 @@
 /*
  *  ailsalib: Ailsatech library
- *  Copyright (C) 2012 - 2015  Iain M Conochie <iain-AT-thargoid.co.uk>
+ *  Copyright (C) 2012 - 2016  Iain M Conochie <iain-AT-thargoid.co.uk>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -69,13 +69,27 @@ enum {			/* regex search codes */
 	DC_REGEX
 };
 
+enum {		// Some string length constants
+	CH_S = 2,
+	COMM_S = 8,
+	RANGE_S = 16,
+	MAC_S = 32,
+	HOST_S = 64,
+	NAME_S = 128,
+	RBUFF_S = 256,
+	TBUFF_S = 512,
+	BUFF_S = 1204,
+	FILE_S = 4096,
+	BUILD_S = 65536
+};
+
 // Linked List data types
 
 typedef struct ailsa_element_s {
 	struct	ailsa_element_s *prev;
 	struct	ailsa_element_s *next;
 	void	*data;
-} AILSAELEM;
+} AILSA_ELEM;
 
 typedef struct ailsa_list_s {
 	size_t 	total;
@@ -83,7 +97,7 @@ typedef struct ailsa_list_s {
 	void 	(*destroy)(void *data);
 	void 	*head;
 	void 	*tail;
-} AILSALIST;
+} AILSA_LIST;
 
 // Hash table types
 
@@ -93,26 +107,33 @@ typedef struct ailsa_hash_s {
 	int		(*match)(const void *key1, const void *key2);
 	void		(*destroy)(void *data);
 	unsigned int	size;
-	AILSALIST		*table;
-} AILSAHASH;
+	AILSA_LIST		*table;
+} AILSA_HASH;
+
+// Simple dictionary
+
+typedef struct ailsa_dict_s {
+	char *name;
+	void *value;
+} AILSA_DICT;
 
 // AILSA_ data functions;
 
 // Linked List
 void
-ailsa_list_init(AILSALIST *list, void (*destory)(void *data));
+ailsa_list_init(AILSA_LIST *list, void (*destory)(void *data));
 
 void
-ailsa_list_destroy(AILSALIST *list);
+ailsa_list_destroy(AILSA_LIST *list);
 
 int
-ailsa_list_ins_next(AILSALIST *list, AILSAELEM *element, void *data);
+ailsa_list_ins_next(AILSA_LIST *list, AILSA_ELEM *element, void *data);
 
 int
-ailsa_list_ins_prev(AILSALIST *list, AILSAELEM *element, void *data);
+ailsa_list_ins_prev(AILSA_LIST *list, AILSA_ELEM *element, void *data);
 
 int
-ailsa_list_remove(AILSALIST *list, AILSAELEM *element, void **data);
+ailsa_list_remove(AILSA_LIST *list, AILSA_ELEM *element, void **data);
 
 // Hash Table
 
@@ -120,22 +141,22 @@ unsigned int
 ailsa_hash(const void *key);
 
 int
-ailsa_hash_init(AILSAHASH *htbl, unsigned int buckets,
+ailsa_hash_init(AILSA_HASH *htbl, unsigned int buckets,
 		unsigned int (*h)(const void *key),
 		int (*match)(const void *key1, const void *key2),
 		void (*destroy)(void *data));
 
 void
-ailsa_hash_destroy(AILSAHASH *htbl);
+ailsa_hash_destroy(AILSA_HASH *htbl);
 
 int
-ailsa_hash_insert(AILSAHASH *htbl, void *data, const char *key);
+ailsa_hash_insert(AILSA_HASH *htbl, void *data, const char *key);
 
 int
-ailsa_hash_remove(AILSAHASH *htbl, void **data, const char *key);
+ailsa_hash_remove(AILSA_HASH *htbl, void **data, const char *key);
 
 int
-ailsa_hash_lookup(AILSAHASH *htbl, void **data, const char *key);
+ailsa_hash_lookup(AILSA_HASH *htbl, void **data, const char *key);
 
 // Path and various string functions
 

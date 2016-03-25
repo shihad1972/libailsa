@@ -1,15 +1,22 @@
+CFLAGS += -std=c99 -W -Wall -Wshadow -Wcast-qual -Wwrite-strings -D_XOPEN_SOURCE=700
 CPPFLAGS += -I../include/
 
 lib_LIBRARIES = libailsalib.a
 
 lib libs: $(lib_LIBRARIES)
 
-$(lib_LIBRARIES): libailsalib.a(data.o) libailsalib.a(generic.o)
+$(lib_LIBRARIES): libailsalib.a(data.o) libailsalib.a(generic.o) libailsalib.a(sql.o) libailsalib.a(networking.o)
 
 libailsalib.a(data.o): data.o
 	$(AR) $(ARFLAGS) $@ $<
 
 libailsalib.a(generic.o): generic.o
+	$(AR) $(ARFLAGS) $@ $<
+
+libailsalib.a(sql.o): sql.o
+	$(AR) $(ARFLAGS) $@ $<
+
+libailsalib.a(networking.o): networking.o
 	$(AR) $(ARFLAGS) $@ $<
 
 .PHONY:	clean
