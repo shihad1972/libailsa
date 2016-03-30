@@ -26,6 +26,7 @@
 #include <config.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <string.h>
 #include <errno.h>
 #include <ailsalib.h>
@@ -76,7 +77,7 @@ ailsa_add_trailing_slash(char *member)
 	
 	retval = 0;
 	len = strlen(member);
-	if ((member[len - 1] != '/') && len < 127) {
+	if ((member[len - 1] != '/') && len < (RBUFF_S - 2)) {
 		member[len] = '/';
 		member[len + 1] = '\0';
 	} else if (member[len - 1] == '/') {
@@ -91,12 +92,12 @@ ailsa_add_trailing_slash(char *member)
 int
 ailsa_add_trailing_dot(char *member)
 {
-// Maximum string size is 255 bytes 
+// Maximum input string size is 254 bytes with no trailing /
 	size_t len;
 	int retval;
 	
 	retval = 0;
-	if ((len = strlen(member)) > 254)
+	if ((len = strlen(member)) > (RBUFF_S - 2))
 		return -1;
 	if (member[len - 1] != '.') {
 		member[len] = '.';
@@ -107,5 +108,47 @@ ailsa_add_trailing_dot(char *member)
 		retval = -1;
 	}
 	return retval;
+}
+
+int
+ailsa_init_string(AILSA_STRING **str)
+{
+// I suppose if this does not alloc, I should really return -1 here and set errno
+	size_t init = 16384;
+	AILSA_STRING *tmp;
+	tmp = ailsa_calloc(sizeof(AILSA_STRING), "str in ailsa_init_string");
+	tmp->max = init;
+	tmp->size = 0;
+	*str = tmp;
+	return 0;
+}
+
+int
+ailsa_resize_string(AILSA_STRING *str)
+{
+	if (!(str))
+		return -1;
+	size_t len = str->max;
+	if (len > (SIZE_MAX / 2))
+		return -1;
+	len = len ^ 2;
+	if (!(str->string = realloc(str->string, len)))
+		return -1;
+	str->max = len;
+	return 0;
+}
+
+int
+ailsa_free_string(AILSA_STRING *str)
+{
+	if (!(str))
+		return -1;
+	if (str->string) {
+		memset(str->string, 0, str->size);
+		free(str->string);
+	}
+	memset(str, 0, sizeof(AILSA_STRING));
+	free(str);
+	return 0;
 }
 

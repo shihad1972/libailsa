@@ -117,6 +117,12 @@ typedef struct ailsa_dict_s {
 	void *value;
 } AILSA_DICT;
 
+typedef struct ailsa_str_s {
+	char *string;
+	size_t max;
+	size_t size;
+} AILSA_STRING;
+
 // AILSA_ data functions;
 
 // Linked List
@@ -157,6 +163,21 @@ ailsa_hash_remove(AILSA_HASH *htbl, void **data, const char *key);
 
 int
 ailsa_hash_lookup(AILSA_HASH *htbl, void **data, const char *key);
+
+/*
+ * AILSA_STRING is to allow easy resizing of a string buffer.
+ * Initialise with ailsa_init_string, and destroy with 
+ * ailsa_free_string.
+ */
+
+int
+ailsa_init_string(AILSA_STRING **str);
+
+int
+ailsa_resize_string(AILSA_STRING *str);
+
+int
+ailsa_free_string(AILSA_STRING *str);
 
 // Path and various string functions
 
