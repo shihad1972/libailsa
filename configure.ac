@@ -19,7 +19,7 @@ AM_PROG_AR
 LT_INIT
 
 # Checks for header files.
-AC_CHECK_HEADERS([fcntl.h stdlib.h string.h syslog.h unistd.h])
+AC_CHECK_HEADERS([inttypes.h fcntl.h stdlib.h string.h syslog.h unistd.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_CHECK_HEADER_STDBOOL

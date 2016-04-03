@@ -26,7 +26,7 @@
 #include <config.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
+#include <inttypes.h>
 #include <string.h>
 #include <errno.h>
 #include <ailsalib.h>
@@ -117,6 +117,7 @@ ailsa_init_string(AILSA_STRING **str)
 	size_t init = 16384;
 	AILSA_STRING *tmp;
 	tmp = ailsa_calloc(sizeof(AILSA_STRING), "str in ailsa_init_string");
+	tmp->string = ailsa_calloc(init, "str->string in ailsa_init_string");
 	tmp->max = init;
 	tmp->size = 0;
 	*str = tmp;
