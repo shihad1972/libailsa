@@ -42,7 +42,7 @@ ailsa_chomp(char *line)
 {
 	char *p;
 
-	p = strchr(line, '\n');
+	p = strrchr(line, '\n');
 	if (p)
 		*p = '\0';
 }
