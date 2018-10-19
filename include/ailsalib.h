@@ -83,6 +83,12 @@ enum {		// Some string length constants
 	BUILD_S = 65536
 };
 
+enum {                  // Error codes
+        AILSA_NO_ACTION = 1,
+        AILSA_NO_DATA = 200,
+        AILSA_NO_CONNECT = 201
+};
+
 // Linked List data types
 
 typedef struct ailsa_element_s {

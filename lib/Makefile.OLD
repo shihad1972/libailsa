@@ -5,7 +5,9 @@ lib_LIBRARIES = libailsalib.a
 
 lib libs: $(lib_LIBRARIES)
 
-$(lib_LIBRARIES): libailsalib.a(data.o) libailsalib.a(generic.o) libailsalib.a(sql.o) libailsalib.a(networking.o)
+$(lib_LIBRARIES): libailsalib.a(data.o) libailsalib.a(generic.o) \
+		libailsalib.a(sql.o) libailsalib.a(networking.o) \
+		libailsalib.a(logging.o)
 
 libailsalib.a(data.o): data.o
 	$(AR) $(ARFLAGS) $@ $<
@@ -17,6 +19,9 @@ libailsalib.a(sql.o): sql.o
 	$(AR) $(ARFLAGS) $@ $<
 
 libailsalib.a(networking.o): networking.o
+	$(AR) $(ARFLAGS) $@ $<
+
+libailsalib.a(logging.o): logging.o
 	$(AR) $(ARFLAGS) $@ $<
 
 .PHONY:	clean
