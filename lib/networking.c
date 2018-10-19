@@ -1,6 +1,6 @@
 /*
  *
- *  cmdb: Configuration Management Database
+ *  ailsalib: Useful helper functions for ailsa suite of programs
  *  Copyright (C) 2015  Iain M Conochie <iain-AT-thargoid.co.uk>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *
  *  networking.c
  *
- *  Functions for networking for cmdbd and cmdbcd
+ *  Functions for networking for ailsalib
  *
  */
 #include <errno.h>
