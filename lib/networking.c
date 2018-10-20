@@ -212,7 +212,7 @@ sock_addrs_eq(const struct sockaddr *addr1, const struct sockaddr *addr2)
 }
 
 int
-ailsa_accept_tcp_connection(int ssock)
+ailsa_tcp_accept(int ssock)
 {
 	struct sockaddr_storage caddr; // Client address
 	socklen_t clen = sizeof(caddr);

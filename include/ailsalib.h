@@ -218,7 +218,7 @@ int
 ailsa_tcp_connect(const char *node, const char *service);
  
 int
-ailsa_accept_tcp_connection(int sock);
+ailsa_tcp_accept(int sock);
 
 int
 ailsa_get_fqdn(char *host, char *fqdn, char *ip);
