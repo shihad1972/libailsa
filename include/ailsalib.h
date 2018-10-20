@@ -212,10 +212,10 @@ ailsa_start_syslog(const char *prog);
 // Networking Functions
 
 int
-ailsa_tcp_socket_bind(const char *node, const char *service);
+ailsa_tcp_bind(const char *node, const char *service);
 
 int
-ailsa_tcp_socket(const char *node, const char *service);
+ailsa_tcp_connect(const char *node, const char *service);
  
 int
 ailsa_accept_tcp_connection(int sock);

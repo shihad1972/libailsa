@@ -45,7 +45,7 @@ print_sock_addr(const struct sockaddr *addr);
 static const int MAXPENDING = 5; // Max outstanding connect requests
 
 int
-ailsa_tcp_socket_bind(const char *node, const char *service)
+ailsa_tcp_bind(const char *node, const char *service)
 {
 	struct addrinfo acrit;
 	memset(&acrit, 0, sizeof(acrit));
@@ -85,7 +85,7 @@ ailsa_tcp_socket_bind(const char *node, const char *service)
 }
 
 int
-ailsa_tcp_socket(const char *node, const char *service)
+ailsa_tcp_connect(const char *node, const char *service)
 {
 	struct addrinfo crit;
 	memset(&crit, 0, sizeof(crit));
