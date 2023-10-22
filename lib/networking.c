@@ -43,6 +43,7 @@ static char *
 print_sock_addr(const struct sockaddr *addr);
 
 static const int MAXPENDING = 5; // Max outstanding connect requests
+char addr_buff[INET6_ADDRSTRLEN];
 
 int
 ailsa_tcp_bind(const char *node, const char *service)
@@ -168,7 +169,7 @@ static char *
 print_sock_addr(const struct sockaddr *addr)
 {
 	const void *num_addr;
-	char addr_buff[INET6_ADDRSTRLEN], *retval;
+	char *retval;
 	retval = addr_buff;
 	switch (addr->sa_family) {
 	case AF_INET:
