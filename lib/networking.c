@@ -171,6 +171,7 @@ print_sock_addr(const struct sockaddr *addr)
 	const void *num_addr;
 	char *retval;
 	retval = addr_buff;
+	memset(retval, 0, INET6_ADDRSTRLEN);
 	switch (addr->sa_family) {
 	case AF_INET:
 		num_addr = &((const struct sockaddr_in *) addr)->sin_addr;
