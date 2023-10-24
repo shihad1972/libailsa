@@ -9,6 +9,7 @@ DIR = lib
 SUBDIRS = lib
 ACLOCAL_AMFLAGS = -I m4
 
+EXTRA_DIST = debian
 BUILT_SOURCES =
 CLEANFILES =
 
