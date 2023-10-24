@@ -1,6 +1,6 @@
 #
 #
-# Makefile.am for DNSA c programs
+# Makefile.am for libailsa
 #
 #
 RM = rm -f
