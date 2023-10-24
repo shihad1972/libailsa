@@ -19,7 +19,7 @@
  *
  *  networking.c
  *
- *  Functions for networking for ailsalib
+ *  Functions for networking for libailsa
  *
  */
 #include <errno.h>
@@ -36,7 +36,7 @@
 #include <sys/socket.h>
 #include <netdb.h>
 #include <syslog.h>
-#include <ailsalib.h>
+#include <ailsa.h>
 
 
 static char *

@@ -19,8 +19,8 @@
  *  ailsalib.h: Main ailsalib library header file
  */
 
-#ifndef __AILSALIB_H__
-# define __AILSALIB_H__
+#ifndef __AILSA_H__
+# define __AILSA_H__
 # include <stdlib.h>
 # include <time.h>
 /** Useful macro to safely avoid double-free memory corruption
@@ -254,4 +254,4 @@ ailsa_append_file(const char *name, void *data, size_t len);
 int
 ailsa_validate_input(char *input, int test);
 
-#endif // __AILSALIB_H__
+#endif // __AILSA_H__

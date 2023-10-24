@@ -28,7 +28,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <syslog.h>
-#include <ailsalib.h>
+#include <ailsa.h>
 
 void
 ailsa_start_syslog(const char *prog)

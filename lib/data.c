@@ -1,6 +1,6 @@
 /*
  *
- *  alisalib: Alisatech Data library
+ *  libailsa: Alisatech Data library
  *  Copyright (C) 2016 Iain M Conochie <iain-AT-thargoid.co.uk>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -33,7 +33,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <ailsalib.h>
+#include <ailsa.h>
 
 // Linked List functions
 

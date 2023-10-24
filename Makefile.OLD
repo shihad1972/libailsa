@@ -5,7 +5,7 @@ CC = c99
 RM = rm -f
 LIBDIR = lib
 SUBDIRS = lib
-lib_LIBRARIES = libailsalib.a
+lib_LIBRARIES = libailsa.a
 
 all: $(lib_LIBRARIES)
 

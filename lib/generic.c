@@ -1,6 +1,6 @@
 /*
  *
- *  ailsalib: Alisatech library
+ *  libailsa: Alisatech library
  *  Copyright (C) 2016 Iain M Conochie <iain-AT-thargoid.co.uk>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *  
  *  generic.c
  *
- *  Contains generic functions for the ailsalib library
+ *  Contains generic functions for the libailsa library
  *
  */
 
@@ -29,12 +29,12 @@
 #include <inttypes.h>
 #include <string.h>
 #include <errno.h>
-#include <ailsalib.h>
+#include <ailsa.h>
 
 void
-show_ailsalib_version()
+show_libailsa_version()
 {
-	printf("libailsalib: Version %s\n", AILSAVERSION);
+	printf("libailsa: Version %s\n", AILSAVERSION);
 }
 
 void
