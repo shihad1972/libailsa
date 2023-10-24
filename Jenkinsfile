@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             alwaysPull true
-            image 'ldap-provision'
+            image 'ailsalib'
             registryUrl "https://docker.shihad.org:5000"
         }
     }
