@@ -118,6 +118,28 @@ ailsa_list_ins_prev(AILSA_LIST *list, AILSA_ELEM *element, void *data)
 }
 
 int
+ailsa_list_insert_tail(AILSA_LIST *list, void *data)
+{
+	AILSA_ELEM *tmp;
+	int retval = 0;
+	if (!(list) || !(data))
+		return -1;
+	if (list->total == 0) {
+		retval = ailsa_list_ins_next(list, NULL, data);
+	} else {
+		AILSA_ELEM *new = ailsa_calloc(sizeof(AILSA_ELEM), "new in ailsa_list_insert");
+		new->data = data;
+		tmp = (AILSA_ELEM *)list->tail;
+		tmp->next = new;
+		new->prev = list->tail;
+		new->next = NULL;
+		list->tail = new;
+		list->total++;
+	}
+	return retval;
+}
+
+int
 ailsa_list_remove(AILSA_LIST *list, AILSA_ELEM *element, void **data)
 {
 	if (!(element) || list->total == 0)
