@@ -22,7 +22,7 @@
 #ifndef __AILSASQL_H__
 # define __AILSASQL_H__
 # include <stddef.h>
-# include <ailsalib.h>
+# include <ailsa.h>
 
 enum {		// sql types
 	ASQL_INT = 1,
