@@ -145,6 +145,9 @@ int
 ailsa_list_ins_prev(AILSA_LIST *list, AILSA_ELEM *element, void *data);
 
 int
+ailsa_list_insert_head(AILSA_LIST *list, void *data);
+
+int
 ailsa_list_insert_tail(AILSA_LIST *list, void *data);
 
 int
