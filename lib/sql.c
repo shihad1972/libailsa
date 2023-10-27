@@ -28,7 +28,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-#include <ailsalib.h>
+#include <ailsa.h>
 #include <ailsasql.h>
 
 struct ailsa_sql_config_s {
