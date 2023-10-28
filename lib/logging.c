@@ -19,7 +19,7 @@
  *
  *  logging.c
  *
- *  Functions for logging for cmdbd and cmdbcd
+ *  Functions for logging for libailsa
  *
  */
 #define _DEFAULT_SOURCE
