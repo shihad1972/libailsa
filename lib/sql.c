@@ -1,7 +1,7 @@
 /*
  *
  *  ailsalib: Alisatech library
- *  Copyright (C) 2016 Iain M Conochie <iain-AT-thargoid.co.uk>
+ *  Copyright (C) 2016 Iain M Conochie <iain-AT-ailsatech.net>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by

@@ -1,7 +1,7 @@
 /*
  *
  *  ailsalib: Useful helper functions for ailsa suite of programs
- *  Copyright (C) 2015  Iain M Conochie <iain-AT-thargoid.co.uk>
+ *  Copyright (C) 2015  Iain M Conochie <iain-AT-ailsatech.net>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
