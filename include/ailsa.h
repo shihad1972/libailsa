@@ -260,4 +260,28 @@ ailsa_append_file(const char *name, void *data, size_t len);
 int
 ailsa_validate_input(char *input, int test);
 
+// KV Functions and types
+
+typedef struct ailsa_kv_s ailsa_kv_s;
+
+void
+init_kv_s(ailsa_kv_s **kv);
+
+void
+clean_kv_s(ailsa_kv_s **kv);
+
+int
+put_kv_value(ailsa_kv_s *kv, const char *value);
+
+int
+put_kv_key(ailsa_kv_s *kv, const char *name);
+
+const char *
+get_kv_key(ailsa_kv_s *kv);
+
+const char *
+get_kv_value(ailsa_kv_s *kv);
+
+// End KV Functions
+
 #endif // __AILSA_H__

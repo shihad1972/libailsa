@@ -6,7 +6,7 @@ Standards-Version: 4.6.2
 Build-Depends: debhelper-compat (= 13)
 
 Package: libailsa
-Architecture: any
+Architecture: amd64
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: library functions from ailsatech
  a suite of useful C functions from ailsatech
