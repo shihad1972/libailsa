@@ -65,6 +65,9 @@ ailsa_show_error(int retval)
 	case AILSA_NO_CONNECT:
 		fprintf(stderr, "Program was unable to make connection to libvirtd\n");
 		break;
+	case AILSA_TRUNCATE:
+		fprintf(stderr, "Input was truncated\n");
+		break;
 	default:
 		return;
 	}

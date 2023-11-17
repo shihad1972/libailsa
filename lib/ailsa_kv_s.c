@@ -33,7 +33,7 @@
 #include <errno.h>
 #include <error.h>
 #include <ctype.h>
-#include <ailsaldap.h>
+#include <ailsa.h>
 
 struct ailsa_kv_s {
         char *key;
@@ -52,11 +52,11 @@ init_kv_s(ailsa_kv_s **kv)
 {
         ailsa_kv_s *data;
         if (!(data = calloc(sizeof(ailsa_kv_s), sizeof(char))))
-                error(MALLOC, errno, "data in init_kv_s");
-	if (!(data->key = calloc(DOMAIN, sizeof(char))))
-		error(MALLOC, errno, "kv->key in init_kv_s");
-	if (!(data->value = calloc(DOMAIN, sizeof(char))))
-		error(MALLOC, errno, "kv->values in init_kv_s");
+                error(AILSA_MALLOC, errno, "data in init_kv_s");
+	if (!(data->key = calloc(RBUFF_S, sizeof(char))))
+		error(AILSA_MALLOC, errno, "kv->key in init_kv_s");
+	if (!(data->value = calloc(RBUFF_S, sizeof(char))))
+		error(AILSA_MALLOC, errno, "kv->values in init_kv_s");
         *kv = data;
 }
 
@@ -65,11 +65,11 @@ clean_kv_s(ailsa_kv_s **kv)
 {
         ailsa_kv_s *data = *kv;
         if (data->key) {
-                memset (data->key, 0, DOMAIN);
+                memset (data->key, 0, RBUFF_S);
                 free(data->key);
         }
         if (data->value) {
-                memset (data->value, 0, DOMAIN);
+                memset (data->value, 0, RBUFF_S);
                 free(data->value);
         }
         memset (data, 0, sizeof(ailsa_kv_s));
@@ -82,10 +82,10 @@ put_kv_key(ailsa_kv_s *kv, const char *key)
 {
         int retval = 0;
         if (!(kv->key))
-                return NODATA;
-        if (snprintf(kv->key, DOMAIN, "%s", key) >= DOMAIN) {
-                rep_truncate("key", DOMAIN);
-                retval = TRUNC;
+                return AILSA_NO_DATA;
+        if (snprintf(kv->key, RBUFF_S, "%s", key) >= RBUFF_S) {
+                ailsa_show_error(AILSA_TRUNCATE);
+                retval = AILSA_TRUNCATE;
         }
         return retval;
 }
@@ -95,10 +95,10 @@ put_kv_value(ailsa_kv_s *kv, const char *value)
 {
         int retval = 0;
         if (!(kv->value))
-                return NODATA;
-        if (snprintf(kv->value, DOMAIN, "%s", value) >= DOMAIN) {
-                rep_truncate("value", DOMAIN);
-                retval = TRUNC;
+                return AILSA_NO_DATA;
+        if (snprintf(kv->value, RBUFF_S, "%s", value) >= RBUFF_S) {
+                ailsa_show_error(AILSA_TRUNCATE);
+                retval = AILSA_TRUNCATE;
         }
         return retval;
 }

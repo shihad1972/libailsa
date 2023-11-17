@@ -85,8 +85,10 @@ enum {		// Some string length constants
 
 enum {                  // Error codes
         AILSA_NO_ACTION = 1,
+	AILSA_MALLOC = 99,
         AILSA_NO_DATA = 200,
-        AILSA_NO_CONNECT = 201
+        AILSA_NO_CONNECT = 201,
+	AILSA_TRUNCATE = 202
 };
 
 // Linked List data types
@@ -214,6 +216,12 @@ ailsa_calloc(size_t len, const char *msg);
 
 void
 ailsa_start_syslog(const char *prog);
+
+void
+ailsa_syslog(int priority, const char *msg, ...);
+
+void
+ailsa_show_error(int retval);
 
 // Networking Functions
 
