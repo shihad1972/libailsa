@@ -1,5 +1,6 @@
 Makefile
 lib/Makefile
+tests/Makefile
 include/config.h
 lib/*.o
 lib/*.a

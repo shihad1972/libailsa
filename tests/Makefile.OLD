@@ -1,0 +1,21 @@
+#
+#
+# Makefile for various small c programs
+#
+#
+CC = gcc
+RM = rm -f
+ECHO = echo
+CFLAGS = -W -Wall -Wshadow -Wcast-qual -Wwrite-strings -Wunused -D_XOPEN_SOURCE=700 -g -DLDAP_DEPRECATED
+CPPFLAGS += -I../include/ `pkg-config --cflags check`
+LDFLAGS = -L../lib `pkg-config --libs check`
+LDLIBS = -lailsa `pkg-config --libs check`
+test_PROGRAMS = check_kv
+
+
+all:	$(test_PROGRAMS)
+
+bin:	$(test_PROGRAMS)
+
+clean:
+	$(RM) *.o $(test_PROGRAMS)

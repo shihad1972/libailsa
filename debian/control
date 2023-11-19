@@ -7,6 +7,6 @@ Build-Depends: debhelper-compat (= 13)
 
 Package: libailsa
 Architecture: amd64
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: library functions from ailsatech
  a suite of useful C functions from ailsatech
