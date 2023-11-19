@@ -29,5 +29,6 @@ AC_TYPE_SIZE_T
 AC_CHECK_FUNCS([memset strchr strstr])
 
 AC_CONFIG_FILES([Makefile
-                 lib/Makefile])
+                 lib/Makefile
+                 tests/Makefile])
 AC_OUTPUT
