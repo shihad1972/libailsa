@@ -8,6 +8,8 @@ ECHO = echo
 DIR = lib
 SUBDIRS = lib
 ACLOCAL_AMFLAGS = -I m4
+EXTRA_DIST = tests
+SUBDIRS += tests
 
 BUILT_SOURCES =
 CLEANFILES =
