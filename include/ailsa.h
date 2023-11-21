@@ -80,6 +80,7 @@ enum {		// Some string length constants
 	TBUFF_S = 512,
 	BUFF_S = 1204,
 	FILE_S = 4096,
+	STRING_S = 16384,
 	BUILD_S = 65536
 };
 
@@ -135,7 +136,7 @@ typedef struct ailsa_str_s {
 
 // Linked List
 void
-ailsa_list_init(AILSA_LIST *list, void (*destory)(void *data));
+ailsa_list_init(AILSA_LIST *list, void (*destroy)(void *data));
 
 void
 ailsa_list_destroy(AILSA_LIST *list);
@@ -190,8 +191,8 @@ ailsa_init_string(AILSA_STRING **str);
 int
 ailsa_resize_string(AILSA_STRING *str);
 
-int
-ailsa_free_string(AILSA_STRING *str);
+void
+ailsa_free_string(void *data);
 
 // Path and various string functions
 

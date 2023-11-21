@@ -114,7 +114,7 @@ int
 ailsa_init_string(AILSA_STRING **str)
 {
 // I suppose if this does not alloc, I should really return -1 here and set errno
-	size_t init = 16384;
+	size_t init = STRING_S;
 	AILSA_STRING *tmp;
 	tmp = ailsa_calloc(sizeof(AILSA_STRING), "str in ailsa_init_string");
 	tmp->string = ailsa_calloc(init, "str->string in ailsa_init_string");
@@ -139,17 +139,17 @@ ailsa_resize_string(AILSA_STRING *str)
 	return 0;
 }
 
-int
-ailsa_free_string(AILSA_STRING *str)
+void
+ailsa_free_string(void *data)
 {
+	AILSA_STRING *str = data;
 	if (!(str))
-		return -1;
+		return;
 	if (str->string) {
 		memset(str->string, 0, str->size);
 		free(str->string);
 	}
 	memset(str, 0, sizeof(AILSA_STRING));
 	free(str);
-	return 0;
 }
 

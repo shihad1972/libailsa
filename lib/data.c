@@ -213,7 +213,7 @@ ailsa_hash(const void *key)
 	size:		current number of buckets that have at least 1 entry
 	h:		hashing function (you can use the one above, ailsa_hash)
 	match:		used in searching the linked list
-	destory:	removes an individual linked list
+	destroy:	removes an individual linked list
  */
 int
 ailsa_hash_init(AILSA_HASH *htbl, unsigned int buckets,
