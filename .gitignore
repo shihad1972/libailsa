@@ -1,6 +1,7 @@
 Makefile
 lib/Makefile
 tests/Makefile
+tests/check_kv
 include/config.h
 lib/*.o
 lib/*.a
