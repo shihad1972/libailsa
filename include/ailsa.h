@@ -104,8 +104,8 @@ typedef struct ailsa_list_s {
 	size_t 	total;
 	int 	(*cmp)(const void *key1, const void *key2);
 	void 	(*destroy)(void *data);
-	void 	*head;
-	void 	*tail;
+	AILSA_ELEM 	*head;
+	AILSA_ELEM 	*tail;
 } AILSA_LIST;
 
 // Hash table types
