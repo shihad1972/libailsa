@@ -28,7 +28,9 @@ AC_TYPE_SIZE_T
 # Checks for library functions.
 AC_CHECK_FUNCS([memset strchr strstr])
 
-PKG_CHECK_MODULES([CHECK], [check >= 0.9.4], [HAVE_CHECK="true"], [HAVE_CHECK="false"])
+PKG_CHECK_MODULES([CHECK], [check >= 0.9.4], 
+                [AC_DEFINE([HAVE_CHECK], [1], [Have check, tests can be run])], 
+                [AC_DEFINE([HAVE_CHECK], [0], [No Check, tests cannot be run])])
 
 AC_CONFIG_FILES([Makefile
                  lib/Makefile
