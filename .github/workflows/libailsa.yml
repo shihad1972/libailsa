@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: libailsa build
 
 on:
   push:
