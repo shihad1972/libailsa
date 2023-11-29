@@ -26,6 +26,7 @@
 #include <config.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <inttypes.h>
 #include <string.h>
 #include <unistd.h>
 #include <errno.h>
@@ -38,10 +39,11 @@
 // Linked List functions
 
 void
-ailsa_list_init(AILSA_LIST *list, void (*destroy)(void *data))
+ailsa_list_init(AILSA_LIST *list, void (*destroy)(void *data), int (*cmp)(const void *key1, const void *key2))
 {
 	list->total = 0;
 	list->destroy = destroy;
+	list->cmp = cmp;
 	list->head = NULL;
 	list->tail = NULL;
 }
@@ -219,6 +221,7 @@ int
 ailsa_hash_init(AILSA_HASH *htbl, unsigned int buckets,
 		unsigned int (*h)(const void *key),
 		int (*match)(const void *key1, const void *key2),
+		int (*cmp)(const void *key1, const void *key2),
 		void (*destroy)(void *data))
 {
 	unsigned int i;
@@ -227,7 +230,7 @@ ailsa_hash_init(AILSA_HASH *htbl, unsigned int buckets,
 	htbl->buckets = buckets;
 	htbl->size = 0;
 	for (i = 0; i < buckets; i++)
-		ailsa_list_init(&htbl->table[i], destroy);
+		ailsa_list_init(&htbl->table[i], destroy, cmp);
 	htbl->h = h;
 	htbl->match = match;
 	htbl->destroy = destroy;
@@ -297,3 +300,67 @@ ailsa_hash_lookup(AILSA_HASH *htbl, void **data, const char *key)
 	return -1;
 }
 
+int
+ailsa_init_string(AILSA_STRING **str)
+{
+// I suppose if this does not alloc, I should really return -1 here and set errno
+	size_t init = STRING_S;
+	AILSA_STRING *tmp;
+	tmp = ailsa_calloc(sizeof(AILSA_STRING), "str in ailsa_init_string");
+	tmp->string = ailsa_calloc(init, "str->string in ailsa_init_string");
+	tmp->max = init;
+	tmp->size = 0;
+	*str = tmp;
+	return 0;
+}
+
+int
+ailsa_add_to_string(AILSA_STRING *str, const char *string)
+{
+	int retval = 0;
+	size_t len = strlen(string);
+	size_t total = len + str->size;
+	if (total >= str->max)
+		if ((retval = ailsa_resize_string(str)) != 0)
+			return retval;
+	sprintf(str->string + str->size, string);
+	str->size = total;
+	return retval;
+}
+
+int
+ailsa_resize_string(AILSA_STRING *str)
+{
+	if (!(str))
+		return -1;
+	size_t len = str->max;
+	if (len > (SIZE_MAX / 2))
+		return -1;
+	len = len ^ 2;
+	if (!(str->string = realloc(str->string, len)))
+		return -1;
+	str->max = len;
+	return 0;
+}
+
+void
+ailsa_free_string(void *data)
+{
+	AILSA_STRING *str = data;
+	if (!(str))
+		return;
+	if (str->string) {
+		memset(str->string, 0, str->size);
+		free(str->string);
+	}
+	memset(str, 0, sizeof(AILSA_STRING));
+	free(str);
+}
+
+int
+ailsa_compare_string(const void *str, const void *cmp)
+{
+	const AILSA_STRING *string = str;
+	const char *compare = cmp;
+	return strncmp(string->string, compare, string->size);
+}

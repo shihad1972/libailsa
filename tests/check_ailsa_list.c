@@ -9,7 +9,7 @@ START_TEST(check_list_init)
         int retval = 0;
         AILSA_LIST *list = ailsa_calloc(sizeof(AILSA_LIST), "AILSA_LIST in check_list_init");
         AILSA_STRING *head, *tail;
-        ailsa_list_init(list, ailsa_free_string);
+        ailsa_list_init(list, ailsa_free_string, ailsa_compare_string);
         if ((retval = ailsa_init_string(&head)) != 0)
                 fprintf(stderr, "AILSA_STRING head init failed\n");
         if ((retval = ailsa_init_string(&tail)) != 0)
@@ -34,7 +34,7 @@ START_TEST(check_list_insert)
         AILSA_LIST *list = ailsa_calloc(sizeof(AILSA_LIST), "AILSA_LIST in check_list_insert");
         AILSA_STRING *head, *tail, *next, *prev;
         AILSA_ELEM *data;
-        ailsa_list_init(list, ailsa_free_string);
+        ailsa_list_init(list, ailsa_free_string, ailsa_compare_string);
         if ((retval = ailsa_init_string(&head)) != 0)
                 fprintf(stderr, "AILSA_STRING head init failed\n");
         if ((retval = ailsa_init_string(&tail)) != 0)
