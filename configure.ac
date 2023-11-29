@@ -28,7 +28,7 @@ AC_TYPE_SIZE_T
 # Checks for library functions.
 AC_CHECK_FUNCS([memset strchr strstr])
 
-PKG_CHECK_MODULES([CHECK], [check >= 0.9.4], [HAVE_CHECK="true"], [AC_MSG_RESULT([No check, tests will not be run])])
+PKG_CHECK_MODULES([CHECK], [check >= 0.9.4], [HAVE_CHECK="true"], [HAVE_CHECK="false"])
 
 AM_CONDITIONAL([HAVE_CHECK], [test x"$HAVE_CHECK" = xtrue])
 
