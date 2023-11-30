@@ -5,7 +5,7 @@
 
 START_TEST(check_kv_init)
 {
-        ailsa_kv_s *kv = NULL;
+        AILSA_DICT *kv = NULL;
 
         init_kv_s(&kv);
         ck_assert_ptr_nonnull(kv);
@@ -15,7 +15,7 @@ END_TEST
 
 START_TEST(check_kv_object)
 {
-        ailsa_kv_s *kv = NULL;
+        AILSA_DICT *kv = NULL;
         const char *key = "format";
         const char *value = "stable";
         init_kv_s(&kv);

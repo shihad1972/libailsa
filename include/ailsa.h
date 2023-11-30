@@ -89,7 +89,8 @@ enum {                  // Error codes
 	AILSA_MALLOC = 99,
         AILSA_NO_DATA = 200,
         AILSA_NO_CONNECT = 201,
-	AILSA_TRUNCATE = 202
+	AILSA_TRUNCATE = 202,
+	AILSA_DATA_EXISTS = 203
 };
 
 // Linked List data types
@@ -119,18 +120,15 @@ typedef struct ailsa_hash_s {
 	AILSA_LIST	*table;
 } AILSA_HASH;
 
-// Simple dictionary
-
-typedef struct ailsa_dict_s {
-	char *name;
-	void *value;
-} AILSA_DICT;
-
 typedef struct ailsa_str_s {
 	char *string;
 	size_t max;
 	size_t size;
 } AILSA_STRING;
+
+// Opaque types
+
+typedef struct ailsa_kv_s AILSA_DICT;
 
 // AILSA_ data functions;
 
@@ -281,25 +279,31 @@ ailsa_validate_input(char *input, int test);
 
 // KV Functions and types
 
-typedef struct ailsa_kv_s ailsa_kv_s;
+void
+init_kv_s(AILSA_DICT **kv);
 
 void
-init_kv_s(ailsa_kv_s **kv);
-
-void
-clean_kv_s(ailsa_kv_s **kv);
+clean_kv_s(AILSA_DICT **kv);
 
 int
-put_kv_value(ailsa_kv_s *kv, const char *value);
+put_kv_value(AILSA_DICT *kv, const char *value);
 
 int
-put_kv_key(ailsa_kv_s *kv, const char *name);
+put_kv_key(AILSA_DICT *kv, const char *name);
+
+// Be careful with the one. Only pass in a piece of data the can be
+// free()ed in one go. Any pointers in the data will not get released.
+int
+put_kv_data(AILSA_DICT *kv, void *data);
 
 const char *
-get_kv_key(ailsa_kv_s *kv);
+get_kv_key(AILSA_DICT *kv);
 
 const char *
-get_kv_value(ailsa_kv_s *kv);
+get_kv_value(AILSA_DICT *kv);
+
+const void *
+get_kv_data(AILSA_DICT *kv);
 
 // End KV Functions
 

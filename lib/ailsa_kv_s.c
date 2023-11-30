@@ -35,10 +35,10 @@
 #include <ctype.h>
 #include <ailsa.h>
 
-struct ailsa_kv_s {
+typedef struct ailsa_kv_s {
         char *key;
         void *value;
-};
+} AILSA_DICT;
 
 /* 
  * Key values pairs are limited to 255 characters
@@ -48,10 +48,10 @@ struct ailsa_kv_s {
  */
 
 void
-init_kv_s(ailsa_kv_s **kv)
+init_kv_s(AILSA_DICT **kv)
 {
-        ailsa_kv_s *data;
-        if (!(data = calloc(sizeof(ailsa_kv_s), sizeof(char))))
+        AILSA_DICT *data;
+        if (!(data = calloc(sizeof(AILSA_DICT), sizeof(char))))
                 error(AILSA_MALLOC, errno, "data in init_kv_s");
 	if (!(data->key = calloc(RBUFF_S, sizeof(char))))
 		error(AILSA_MALLOC, errno, "kv->key in init_kv_s");
@@ -61,9 +61,9 @@ init_kv_s(ailsa_kv_s **kv)
 }
 
 void
-clean_kv_s(ailsa_kv_s **kv)
+clean_kv_s(AILSA_DICT **kv)
 {
-        ailsa_kv_s *data = *kv;
+        AILSA_DICT *data = *kv;
         if (data->key) {
                 memset (data->key, 0, RBUFF_S);
                 free(data->key);
@@ -72,13 +72,13 @@ clean_kv_s(ailsa_kv_s **kv)
                 memset (data->value, 0, RBUFF_S);
                 free(data->value);
         }
-        memset (data, 0, sizeof(ailsa_kv_s));
+        memset (data, 0, sizeof(AILSA_DICT));
         free(data);
         *kv = NULL;
 }
 
 int
-put_kv_key(ailsa_kv_s *kv, const char *key)
+put_kv_key(AILSA_DICT *kv, const char *key)
 {
         int retval = 0;
         if (!(kv->key))
@@ -91,7 +91,7 @@ put_kv_key(ailsa_kv_s *kv, const char *key)
 }
 
 int
-put_kv_value(ailsa_kv_s *kv, const char *value)
+put_kv_value(AILSA_DICT *kv, const char *value)
 {
         int retval = 0;
         if (!(kv->value))
@@ -103,8 +103,18 @@ put_kv_value(ailsa_kv_s *kv, const char *value)
         return retval;
 }
 
+int
+put_kv_data(AILSA_DICT *kv, void *data)
+{
+        int retval = 0;
+        if (kv->value)
+                return AILSA_DATA_EXISTS;
+        kv->value = data;
+        return retval;
+}
+
 const char *
-get_kv_key(ailsa_kv_s *kv)
+get_kv_key(AILSA_DICT *kv)
 {
         char *key = '\0';
 
@@ -113,10 +123,19 @@ get_kv_key(ailsa_kv_s *kv)
 }
 
 const char *
-get_kv_value(ailsa_kv_s *kv)
+get_kv_value(AILSA_DICT *kv)
 {
         char *value = '\0';
 
         value = kv->value;
         return value;
+}
+
+const void *
+get_kv_data(AILSA_DICT *kv)
+{
+        void *data = '\0';
+
+        data = kv->value;
+        return data;
 }
