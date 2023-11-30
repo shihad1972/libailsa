@@ -283,7 +283,7 @@ void
 init_kv_s(AILSA_DICT **kv);
 
 void
-clean_kv_s(AILSA_DICT **kv);
+clean_kv_s(void *kv);
 
 int
 put_kv_value(AILSA_DICT *kv, const char *value);
@@ -294,7 +294,7 @@ put_kv_key(AILSA_DICT *kv, const char *name);
 // Be careful with the one. Only pass in a piece of data the can be
 // free()ed in one go. Any pointers in the data will not get released.
 int
-put_kv_data(AILSA_DICT *kv, void *data);
+put_kv_data(AILSA_DICT *kv, void *data, size_t size);
 
 const char *
 get_kv_key(AILSA_DICT *kv);
@@ -304,6 +304,9 @@ get_kv_value(AILSA_DICT *kv);
 
 const void *
 get_kv_data(AILSA_DICT *kv);
+
+int
+compare_kv(const void *data, const void *cmp);
 
 // End KV Functions
 

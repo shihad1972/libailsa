@@ -38,6 +38,7 @@
 typedef struct ailsa_kv_s {
         char *key;
         void *value;
+        size_t size;
 } AILSA_DICT;
 
 /* 
@@ -51,30 +52,29 @@ void
 init_kv_s(AILSA_DICT **kv)
 {
         AILSA_DICT *data;
-        if (!(data = calloc(sizeof(AILSA_DICT), sizeof(char))))
-                error(AILSA_MALLOC, errno, "data in init_kv_s");
-	if (!(data->key = calloc(RBUFF_S, sizeof(char))))
-		error(AILSA_MALLOC, errno, "kv->key in init_kv_s");
-	if (!(data->value = calloc(RBUFF_S, sizeof(char))))
-		error(AILSA_MALLOC, errno, "kv->values in init_kv_s");
+        data = ailsa_calloc(sizeof(AILSA_DICT), "data in init_kv_s");
+        data->key = ailsa_calloc(RBUFF_S, "kv->key in init_kv_s");
+        data->value = ailsa_calloc(RBUFF_S, "kv->value in init_kv_s");
         *kv = data;
 }
 
 void
-clean_kv_s(AILSA_DICT **kv)
+clean_kv_s(void *kv)
 {
-        AILSA_DICT *data = *kv;
+        AILSA_DICT *data = kv;
         if (data->key) {
                 memset (data->key, 0, RBUFF_S);
                 free(data->key);
         }
         if (data->value) {
-                memset (data->value, 0, RBUFF_S);
+                if (data->size)
+                        memset(data->value, 0, data->size);
+                else
+                        memset (data->value, 0, RBUFF_S);
                 free(data->value);
         }
         memset (data, 0, sizeof(AILSA_DICT));
         free(data);
-        *kv = NULL;
 }
 
 int
@@ -104,12 +104,13 @@ put_kv_value(AILSA_DICT *kv, const char *value)
 }
 
 int
-put_kv_data(AILSA_DICT *kv, void *data)
+put_kv_data(AILSA_DICT *kv, void *data, size_t size)
 {
         int retval = 0;
         if (kv->value)
-                return AILSA_DATA_EXISTS;
+                free(kv->value);
         kv->value = data;
+        kv->size = size;
         return retval;
 }
 
@@ -138,4 +139,17 @@ get_kv_data(AILSA_DICT *kv)
 
         data = kv->value;
         return data;
+}
+
+int
+compare_kv(const void *data, const void *cmp)
+{
+        int retval = 0;
+        const AILSA_DICT *orig = data, *new = cmp;
+        if ((retval = strcmp(orig->key, new->key)) != 0)
+                return retval;
+        if (orig->size > 0)
+                return memcmp(orig->value, new->value, orig->size);
+        else
+                return strncmp(orig->value, new->value, RBUFF_S);
 }
