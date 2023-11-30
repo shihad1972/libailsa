@@ -116,7 +116,7 @@ typedef struct ailsa_hash_s {
 	int		(*match)(const void *key1, const void *key2);
 	void		(*destroy)(void *data);
 	unsigned int	size;
-	AILSA_LIST		*table;
+	AILSA_LIST	*table;
 } AILSA_HASH;
 
 // Simple dictionary
