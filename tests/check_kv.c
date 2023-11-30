@@ -44,7 +44,7 @@ START_TEST(check_kv_list)
         ailsa_dn_s *ddn = ailsa_calloc(sizeof(ailsa_dn_s), "ailsa_dn_s cmp in check_kv_list");
         sprintf(dn->rdn, "ailsa");
         sprintf(dn->dn, "shihad.org");
-        AILSA_DICT *head = NULL, *tail = NULL, *cmp;
+        AILSA_DICT *head, *tail, *cmp;
         init_kv_s(&head);
         init_kv_s(&tail);
         init_kv_s(&cmp);
@@ -53,7 +53,7 @@ START_TEST(check_kv_list)
         if ((retval = put_kv_data(head, dn, sizeof(ailsa_dn_s))) != 0)
                 fprintf(stderr, "Unable to insert data into head\n");
         memcpy(ddn, dn, sizeof(ailsa_dn_s));
-        if ((retval = put_kv_data(cmp, dn, sizeof(ailsa_dn_s))) != 0)
+        if ((retval = put_kv_data(cmp, ddn, sizeof(ailsa_dn_s))) != 0)
                 fprintf(stderr, "Unable to insert data into cmp\n");
         put_kv_key(tail, "cn");
         put_kv_value(tail, "iain");
@@ -67,7 +67,7 @@ START_TEST(check_kv_list)
                 fprintf(stderr, "Cannot find position of cmp in list");
         ck_assert_uint_eq(pos, 0);
         ailsa_list_destroy(list);
-        my_free(cmp);
+        clean_kv_s(cmp);
         my_free(list);
 }
 END_TEST
