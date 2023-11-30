@@ -136,7 +136,7 @@ typedef struct ailsa_str_s {
 
 // Linked List
 void
-ailsa_list_init(AILSA_LIST *list, void (*destroy)(void *data));
+ailsa_list_init(AILSA_LIST *list, void (*destroy)(void *data), int (*cmp)(const void *key1, const void *key2));
 
 void
 ailsa_list_destroy(AILSA_LIST *list);
@@ -165,6 +165,7 @@ int
 ailsa_hash_init(AILSA_HASH *htbl, unsigned int buckets,
 		unsigned int (*h)(const void *key),
 		int (*match)(const void *key1, const void *key2),
+		int (*cmp)(const void *key1, const void *key2),
 		void (*destroy)(void *data));
 
 void
@@ -189,10 +190,16 @@ int
 ailsa_init_string(AILSA_STRING **str);
 
 int
+ailsa_add_to_string(AILSA_STRING *str, const char *string);
+
+int
 ailsa_resize_string(AILSA_STRING *str);
 
 void
 ailsa_free_string(void *data);
+
+int
+ailsa_compare_string(const void *str, const void *cmp);
 
 // Path and various string functions
 
