@@ -187,6 +187,21 @@ ailsa_list_remove(AILSA_LIST *list, AILSA_ELEM *element, void **data)
 	return 0;
 }
 
+int
+ailsa_list_position(AILSA_LIST *list, size_t *pos, const void *data)
+{
+	AILSA_ELEM *elem = list->head;
+	if (!(data))
+		return -1;
+	while (list->cmp(elem->data, data) != 0) {
+		(*pos)++;
+		if (!(elem->next))
+			return -1;
+		elem = elem->next;
+	}
+	return 0;
+}
+
 // Hash tables functions
 
 // Hash a character string key
