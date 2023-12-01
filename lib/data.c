@@ -69,7 +69,7 @@ ailsa_list_ins_next(AILSA_LIST *list, AILSA_ELEM *element, void *data)
 	size_t size = sizeof(AILSA_ELEM);
 	AILSA_ELEM *new;
 
-	if (!(element) && list->total != 0)
+	if ((!(element) && list->total != 0) || list->total == SIZE_MAX)
 		return -1;
 	new = ailsa_calloc(size, "new in ailsa_list_ins_next");
 	new->data = data;
@@ -97,7 +97,7 @@ ailsa_list_ins_prev(AILSA_LIST *list, AILSA_ELEM *element, void *data)
 	size_t size = sizeof(AILSA_ELEM);
 	AILSA_ELEM *new;
 
-	if (!(element) && list->total != 0)
+	if ((!(element) && list->total != 0) || list->total == SIZE_MAX)
 		return -1;
 	new = ailsa_calloc(size, "new in ailsa_list_ins_prev");
 	new->data = data;
@@ -126,6 +126,8 @@ ailsa_list_insert_head(AILSA_LIST *list, void *data)
 	int retval = 0;
 	if (!(list) || !(data))
 		return -1;
+	if (list->total == SIZE_MAX)
+		return -1;
 	if (list->total == 0) {
 		retval = ailsa_list_ins_next(list, NULL, data);
 	} else {
@@ -147,6 +149,8 @@ ailsa_list_insert_tail(AILSA_LIST *list, void *data)
 	AILSA_ELEM *tmp;
 	int retval = 0;
 	if (!(list) || !(data))
+		return -1;
+	if (list->total == SIZE_MAX)
 		return -1;
 	if (list->total == 0) {
 		retval = ailsa_list_ins_next(list, NULL, data);
@@ -184,6 +188,21 @@ ailsa_list_remove(AILSA_LIST *list, AILSA_ELEM *element, void **data)
 	}
 	my_free(element);
 	list->total--;
+	return 0;
+}
+
+int
+ailsa_list_position(AILSA_LIST *list, size_t *pos, const void *data)
+{
+	AILSA_ELEM *elem = list->head;
+	if (!(data))
+		return -1;
+	while (list->cmp(elem->data, data) != 0) {
+		(*pos)++;
+		if (!(elem->next))
+			return -1;
+		elem = elem->next;
+	}
 	return 0;
 }
 

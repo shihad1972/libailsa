@@ -1,8 +1,8 @@
-name: libailsa build
+name: libailsa merge
 
 on:
   push:
-    branches: [ "feature/*" ]
+    branches: [ "master" ]
 
 jobs:
   build:
@@ -19,3 +19,8 @@ jobs:
       run: ./configure
     - name: Run distbuild
       run: make distcheck
+    - name: Archive build artifact
+      uses: action/upload-artifact@v3
+      with:
+        name: libailsa-tgz
+        path: *.tar.gz

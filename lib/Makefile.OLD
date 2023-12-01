@@ -1,4 +1,4 @@
-CFLAGS += -std=c99 -W -Wall -Wshadow -Wcast-qual -Wwrite-strings -D_XOPEN_SOURCE=700
+CFLAGS += -std=c99 -W -Wall -Wshadow -Wcast-qual -Wwrite-strings -D_XOPEN_SOURCE=700 -g
 CPPFLAGS += -I../include/
 
 lib_LIBRARIES = libailsa.a
