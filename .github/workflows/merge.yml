@@ -20,7 +20,7 @@ jobs:
     - name: Run distbuild
       run: make distcheck
     - name: Archive build artifact
-      uses: action/upload-artifact@v3
+      uses: actions/upload-artifact@v3
       with:
         name: libailsa-tgz
         path: "*.tar.gz"
