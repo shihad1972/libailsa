@@ -342,7 +342,7 @@ ailsa_add_to_string(AILSA_STRING *str, const char *string)
 	if (total >= str->max)
 		if ((retval = ailsa_resize_string(str)) != 0)
 			return retval;
-	sprintf(str->string + str->size, string);
+	sprintf(str->string + str->size, "%s", string);
 	str->size = total;
 	return retval;
 }
