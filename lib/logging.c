@@ -1,6 +1,6 @@
 /*
  *
- *  cmdb: Configuration Management Database
+ *  libailsa: libailsa library
  *  Copyright (C) 2015  Iain M Conochie <iain-AT-ailsatech.net>
  *
  *  This program is free software; you can redistribute it and/or modify

@@ -1,7 +1,7 @@
 /*
  *
- *  ldap-col: collection of ldap utilities
- *  Copyright (C) 2014-2015  Iain M Conochie <iain-AT-thargoid.co.uk>
+ *  libailsa: libailsa library
+ *  Copyright (C) 2014-2023  Iain M Conochie <iain-AT-ailsatech.net>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,9 +19,9 @@
  *
  *  ailsa_kv_s.c
  *
- *  Shared function defintions for the ailsa ldap library
+ *  Contains definitions for the AILSA_DICT object
  *
- *  Part of the ldap collection suite of program
+ *  Part of the libailsa
  *
  */
 
