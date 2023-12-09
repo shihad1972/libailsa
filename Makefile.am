@@ -8,7 +8,7 @@ ECHO = echo
 DIR = lib
 SUBDIRS = lib
 ACLOCAL_AMFLAGS = -I m4
-EXTRA_DIST = tests debian
+EXTRA_DIST = tests debian automake
 SUBDIRS += tests
 
 BUILT_SOURCES =

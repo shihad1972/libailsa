@@ -1,6 +1,6 @@
 Source: libailsa
 Maintainer: Iain M Conochie <iain@ailsatech.net>
-Section: misc
+Section: main
 Priority: optional
 Standards-Version: 4.6.2
 Build-Depends: debhelper-compat (= 13)
