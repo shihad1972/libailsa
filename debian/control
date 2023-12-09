@@ -1,12 +1,15 @@
 Source: libailsa
-Maintainer: Iain M Conochie <iain@ailsatech.net>
-Section: main
+Section: libs
 Priority: optional
-Standards-Version: 4.6.2
 Build-Depends: debhelper-compat (= 13)
+Maintainer: Iain M Conochie <iain@ailsatech.net>
+Standards-Version: 4.6.2
+Homepage: https://github.com/shihad1972/libailsa
+Rules-Requires-Root: no
 
 Package: libailsa
 Architecture: amd64
+Multi-Arch: foreign
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: library functions from ailsatech
  a suite of useful C functions from ailsatech
