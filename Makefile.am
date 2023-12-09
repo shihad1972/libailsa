@@ -9,6 +9,8 @@ DIR = lib
 SUBDIRS = lib
 ACLOCAL_AMFLAGS = -I m4
 EXTRA_DIST = tests debian automake
+licensedir = $(docdir)
+dist_license_DATA = LICENSE
 SUBDIRS += tests
 
 BUILT_SOURCES =
