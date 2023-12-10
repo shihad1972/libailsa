@@ -9,7 +9,7 @@ Rules-Requires-Root: no
 
 Package: libailsa
 Section: libs
-Architecture: amd64
+Architecture: any
 Multi-Arch: foreign
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends}, ${shlibs:Depends}
