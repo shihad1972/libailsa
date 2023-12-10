@@ -1,4 +1,4 @@
-usr/include/*.h
+usr/include
 usr/lib/*/*.so
 usr/lib/*/*.la
 usr/lib/*/*.a
