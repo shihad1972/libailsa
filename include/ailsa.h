@@ -157,6 +157,9 @@ ailsa_list_remove(AILSA_LIST *list, AILSA_ELEM *element, void **data);
 int
 ailsa_list_position(AILSA_LIST *list, size_t *pos, const void *data);
 
+int
+ailsa_list_get_member(AILSA_LIST *list, const void *data, void **member);
+
 // Hash Table
 
 unsigned int

@@ -206,6 +206,29 @@ ailsa_list_position(AILSA_LIST *list, size_t *pos, const void *data)
 	return 0;
 }
 
+int
+ailsa_list_get_member(AILSA_LIST *list, const void *data, void **member)
+{
+/*
+  This function allows a member of the list to be modified after it has been
+  added to the list. This can be useful if you are creating a list of
+  configuration values, using the AILSA_DICT struct, and you need to update
+  a config value.
+*/
+
+	int retval = 0;
+	AILSA_ELEM *e = list->head;
+	if (!(data))
+		return -1;
+	while (list->cmp(e->data, data) != 0) {
+		if (!(e->next))
+			return -1;
+		e = e->next;
+	}
+	*member = e->data;
+	return retval;
+}
+
 // Hash tables functions
 
 // Hash a character string key
