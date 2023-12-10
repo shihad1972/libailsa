@@ -1,4 +1,4 @@
-libailsa (0.1-4) UNRELEASED; urgency=medium
+libailsa (0.1-5) UNRELEASED; urgency=medium
 
   [ Iain M. Conochie ]
   * Initial release
@@ -11,4 +11,7 @@ libailsa (0.1-4) UNRELEASED; urgency=medium
 
   [ Iain M Conochie]
   * Updated package definitions
- -- Iain M Conochie <iain@ailsatech.net>  Sun, 10 Dec 2023 00:07:35 +0000
+
+  [ Iain M Conochie ]
+  * Added la files to package definitions
+ -- Iain M Conochie <iain@ailsatech.net>  Sun, 10 Dec 2023 14:09:09 +0000
