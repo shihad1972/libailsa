@@ -153,3 +153,10 @@ compare_kv(const void *data, const void *cmp)
         else
                 return strncmp(orig->value, new->value, RBUFF_S);
 }
+
+int
+compare_key(const void *data, const void *cmp)
+{
+        const AILSA_DICT *orig = data, *new = cmp;
+        return strcmp(orig->key, new->key);
+}

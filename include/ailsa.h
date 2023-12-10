@@ -308,6 +308,9 @@ get_kv_data(AILSA_DICT *kv);
 int
 compare_kv(const void *data, const void *cmp);
 
+int
+compare_key(const void *data, const void *cmp);
+
 // End KV Functions
 
 #endif // __AILSA_H__
