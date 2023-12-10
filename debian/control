@@ -1,5 +1,5 @@
 Source: libailsa
-Section: libs
+Section: devel
 Priority: optional
 Build-Depends: debhelper-compat (= 13)
 Maintainer: Iain M Conochie <iain@ailsatech.net>
@@ -8,8 +8,18 @@ Homepage: https://github.com/shihad1972/libailsa
 Rules-Requires-Root: no
 
 Package: libailsa
+Section: libs
 Architecture: amd64
 Multi-Arch: foreign
+Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: library functions from ailsatech
+Description: Library functions from ailsatech
  a suite of useful C functions from ailsatech
+
+Package: libailsa-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: libsharedlib1 (= ${binary:Version}), ${misc:Depends}
+Description: Development files for libailsa
+ Development headers to include for the libailsa library
