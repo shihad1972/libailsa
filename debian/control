@@ -10,7 +10,6 @@ Rules-Requires-Root: no
 Package: libailsa
 Section: libs
 Architecture: any
-Multi-Arch: foreign
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: Library functions from ailsatech
@@ -19,7 +18,7 @@ Description: Library functions from ailsatech
 Package: libailsa-dev
 Section: libdevel
 Architecture: any
-Multi-Arch: same
+Multi-Arch: foreign
 Depends: libailsa (= ${binary:Version}), ${misc:Depends}
 Description: Development files for libailsa
  Development headers to include for the libailsa library
