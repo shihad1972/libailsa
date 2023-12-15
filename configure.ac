@@ -8,7 +8,7 @@ AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_HEADERS([include/config.h])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 
-# Add m4 macros direcotry
+# Add m4 macros directory
 AC_CONFIG_MACRO_DIR([m4])
 
 # Checks for programs.
