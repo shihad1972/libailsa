@@ -2,7 +2,7 @@ if HAVE_CHECK
 TESTS = check_kv check_ailsa_list check_kv_list
 EXTRA_DIST = mock.txt
 check_PROGRAMS = $(TESTS)
-test_check_kv_list_CPPFLAGS = -DTESTFILE_DIR='"$(abs_top_srcdir)/tests/"'
+AM_CPPFLAGS = -DTESTFILE_DIR='"$(abs_top_srcdir)/tests/"'
 AM_CFLAGS = @CHECK_CFLAGS@
 AM_LDFLAGS = $(top_builddir)/lib/libailsa.la @CHECK_LIBS@
 
