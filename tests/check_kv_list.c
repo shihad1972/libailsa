@@ -44,7 +44,11 @@ START_TEST(check_kv_list)
         FILE *f;
 
         create_kv_list(&list);
+#ifdef TESTFILE_DIR
+        if (!(f = fopen(TESTFILE_DIR path, "r")))
+#else
         if (!(f = fopen(path, "r")))
+#endif
                 goto cleanup;
         for (i = 0; max > 0; i++) {
                 if (!(fgets(l, TBUFF_S, f)))
