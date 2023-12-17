@@ -34,7 +34,6 @@
 
 START_TEST(check_kv_list)
 {
-        const char *path = "./mock.txt";
         const char *server = "ticktock.example.org";
         const char *base = "dc=example,dc=org";
         const char *s;
@@ -45,9 +44,9 @@ START_TEST(check_kv_list)
 
         create_kv_list(&list);
 #ifdef TESTFILE_DIR
-        if (!(f = fopen(TESTFILE_DIR path, "r")))
+        if (!(f = fopen(TESTFILE_DIR "mock.txt", "r")))
 #else
-        if (!(f = fopen(path, "r")))
+        if (!(f = fopen("./mock.txt", "r")))
 #endif
                 goto cleanup;
         for (i = 0; max > 0; i++) {
