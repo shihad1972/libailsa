@@ -218,7 +218,7 @@ ailsa_list_get_member(AILSA_LIST *list, const void *data, void **member)
 
 	int retval = 0;
 	AILSA_ELEM *e = list->head;
-	if (!(data))
+	if (!(data) || !(e))
 		return -1;
 	while (list->cmp(e->data, data) != 0) {
 		if (!(e->next))

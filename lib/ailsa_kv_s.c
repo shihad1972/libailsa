@@ -160,3 +160,60 @@ compare_key(const void *data, const void *cmp)
         const AILSA_DICT *orig = data, *new = cmp;
         return strcmp(orig->key, new->key);
 }
+
+void
+create_kv_list(AILSA_LIST **list)
+{
+        AILSA_LIST *l = ailsa_calloc(sizeof(AILSA_LIST), "list in create_kv_list");
+        ailsa_list_init(l, clean_kv_s, compare_key);
+        *list = l;
+}
+
+void
+destroy_kv_list(AILSA_LIST *list)
+{
+        ailsa_list_destroy(list);
+        my_free(list);
+}
+
+int
+add_to_kv_list(AILSA_LIST *list, const char *key, const char *value)
+{
+        AILSA_DICT *d;
+        void *v;
+        int retval = 0;
+
+        init_kv_s(&d);
+        if ((retval = put_kv_key(d, key)) != 0)
+                return retval;
+        if ((ailsa_list_get_member(list, d, &v)) != -1) {
+                clean_kv_s(d);
+                d = v;
+                retval = put_kv_value(d, value);
+                return retval;
+        }
+        if ((retval = put_kv_value(d, value)) != 0)
+                return retval;
+        retval = ailsa_list_insert_tail(list, d);
+        return retval;
+}
+
+const char *
+get_value_from_kv_list(AILSA_LIST *list, const char *key)
+{
+        const char *value = NULL;
+        AILSA_DICT *d;
+        void *v;
+
+        init_kv_s(&d);
+        if ((put_kv_key(d, key)) != 0)
+                return value;
+        if ((ailsa_list_get_member(list, d, &v )) != -1) {
+                clean_kv_s(d);
+                d = v;
+                value = get_kv_value(d);
+        } else {
+                clean_kv_s(d);
+        }
+        return value;
+}

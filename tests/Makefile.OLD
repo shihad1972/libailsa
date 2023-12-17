@@ -10,7 +10,7 @@ CFLAGS = -W -Wall -Wshadow -Wcast-qual -Wwrite-strings -Wunused -D_XOPEN_SOURCE=
 CPPFLAGS += -I../include/ `pkg-config --cflags check`
 LDFLAGS = -L../lib `pkg-config --libs check`
 LDLIBS = -lailsa `pkg-config --libs check`
-test_PROGRAMS = check_kv check_ailsa_list
+test_PROGRAMS = check_kv check_ailsa_list check_kv_list
 
 
 all:	$(test_PROGRAMS)

@@ -1,0 +1,11 @@
+#
+# mock data file for kv_list test
+#
+
+driftfile /var/lib/ntp/drift
+disable monitor
+statsdir /var/log/ntpstats
+server ticktock.example.org
+BASE    dc=example,dc=org
+URL     ldap://directory.example.org
+HOST    directory.example.org

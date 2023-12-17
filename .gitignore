@@ -3,6 +3,7 @@ lib/Makefile
 tests/Makefile
 tests/check_kv
 tests/check_ailsa_list
+tests/check_kv_list
 include/config.h
 lib/*.o
 lib/*.a

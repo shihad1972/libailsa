@@ -1,5 +1,5 @@
 if HAVE_CHECK
-TESTS = check_kv check_ailsa_list
+TESTS = check_kv check_ailsa_list check_kv_list
 check_PROGRAMS = $(TESTS)
 AM_CFLAGS = @CHECK_CFLAGS@
 AM_LDFLAGS = $(top_builddir)/lib/libailsa.la @CHECK_LIBS@

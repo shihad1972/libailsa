@@ -314,6 +314,20 @@ compare_kv(const void *data, const void *cmp);
 int
 compare_key(const void *data, const void *cmp);
 
+// KV list functions
+
+void
+create_kv_list(AILSA_LIST **list);
+
+void
+destroy_kv_list(AILSA_LIST *list);
+
+int
+add_to_kv_list(AILSA_LIST *list, const char *key, const char *value);
+
+const char *
+get_value_from_kv_list(AILSA_LIST *list, const char *key);
+
 // End KV Functions
 
 #endif // __AILSA_H__
