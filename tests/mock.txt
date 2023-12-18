@@ -3,9 +3,14 @@
 #
 
 driftfile /var/lib/ntp/drift
+# Duplicate entry. The last one should be our entry
+server tocktick.example.com
 disable monitor
 statsdir /var/log/ntpstats
 server ticktock.example.org
-BASE    dc=example,dc=org
+# Duplicate entry. The last one should be our entry
+BASE    dc=org,dc=example
 URL     ldap://directory.example.org
 HOST    directory.example.org
+BASE    dc=example,dc=org
+
