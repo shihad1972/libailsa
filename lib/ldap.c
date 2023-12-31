@@ -38,10 +38,10 @@ ailsa_ldap_init(LDAP **ailsa, const char *url)
 
         if ((retval = ldap_initialize(ailsa, url)) != LDAP_SUCCESS) {
                 ailsa_syslog(LOG_DAEMON, "Cannot initialise LDAP library in ailsa_ldap_init");
-                exit(MALLOC);
+                exit(AILSA_MALLOC);
         }
         if ((retval = ldap_set_option(*ailsa, LDAP_OPT_PROTOCOL_VERSION, &proto)) != LDAP_SUCCESS) {
                 ailsa_syslog(LOG_DAEMON, "Cannot set protocol version to v3 in ailsa_ldap_init");
-		exit(ONE);
+		exit(AILSA_LDAP_ERROR);
         }
 }

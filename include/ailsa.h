@@ -86,6 +86,7 @@ enum {		// Some string length constants
 
 enum {                  // Error codes
         AILSA_NO_ACTION = 1,
+	AILSA_LDAP_ERROR = 98,
 	AILSA_MALLOC = 99,
         AILSA_NO_DATA = 200,
         AILSA_NO_CONNECT = 201,
