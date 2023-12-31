@@ -30,7 +30,6 @@
 #include <syslog.h>
 #include <ldap.h>
 #include <ailsa.h>
-#include <ailsaldap.h>
 
 void
 ailsa_ldap_init(LDAP **ailsa, const char *url)
