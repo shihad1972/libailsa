@@ -331,4 +331,12 @@ get_value_from_kv_list(AILSA_LIST *list, const char *key);
 
 // End KV Functions
 
+
+// LDAP functions
+
+void
+ailsa_ldap_init(LDAP **ailsa, const char *url);
+
+int
+ailsa_ldap_mod_str_pack(LDAPMod *mod, int type, char *cn, char **values);
 #endif // __AILSA_H__

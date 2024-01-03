@@ -45,3 +45,14 @@ ailsa_ldap_init(LDAP **ailsa, const char *url)
 		exit(AILSA_LDAP_ERROR);
         }
 }
+
+int
+ailsa_ldap_mod_str_pack(LDAPMod *mod, int type, char *cn, char **values)
+{
+        if (!(list)|| !(cn) || !(values))
+                return AILSA_NO_DATA;
+        mod->mod_op = type;
+        mod->mod_type = cn;
+        mod->mod_values = values;
+        return 0;
+}

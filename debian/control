@@ -1,15 +1,16 @@
 Source: libailsa
 Section: devel
 Priority: optional
-Build-Depends: debhelper-compat (= 12)
+Build-Depends: debhelper-compat (= 12) dh-autoreconf
 Maintainer: Iain M Conochie <iain@ailsatech.net>
-Standards-Version: 4.6.2
+Standards-Version: 4.5.1
 Homepage: https://github.com/shihad1972/libailsa
 Rules-Requires-Root: no
 
 Package: libailsa
 Section: libs
 Architecture: any
+Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: Library functions from ailsatech
@@ -18,7 +19,7 @@ Description: Library functions from ailsatech
 Package: libailsa-dev
 Section: libdevel
 Architecture: any
-Multi-Arch: foreign
+Multi-Arch: same
 Depends: libailsa (= ${binary:Version}), ${misc:Depends}
 Description: Development files for libailsa
  Development headers to include for the libailsa library
