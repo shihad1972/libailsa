@@ -23,6 +23,11 @@
 # define __AILSA_H__
 # include <stdlib.h>
 # include <time.h>
+
+# ifdef HAVE_LIBLDAP
+#  include <ldap.h>
+# endif // HAVE_LIBLDAP
+
 /** Useful macro to safely avoid double-free memory corruption
  ** Shamelessly stolen from the nagios source. Thanks :) */
 # ifndef my_free
@@ -40,7 +45,7 @@
 #  define NI_MAXHOST 1025
 # endif // NI_MAXHOST so I do not have to use __GNU_SOURCE. grrrr 
 
-# define AILSAVERSION "0.1"
+# define AILSAVERSION "0.2.2"
 
 // Data Definitions
 
@@ -334,9 +339,12 @@ get_value_from_kv_list(AILSA_LIST *list, const char *key);
 
 // LDAP functions
 
+# ifdef HAVE_LIBLDAP
 void
 ailsa_ldap_init(LDAP **ailsa, const char *url);
 
 int
 ailsa_ldap_mod_str_pack(LDAPMod *mod, int type, char *cn, char **values);
+# endif // HAVE LIBLDAP
+
 #endif // __AILSA_H__
