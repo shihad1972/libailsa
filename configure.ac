@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([libailsa], [0.2.0], [iain@ailsatech.net])
+AC_INIT([libailsa], [0.2.1], [iain@ailsatech.net])
 AC_CONFIG_SRCDIR([lib/data.c])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_HEADERS([include/config.h])
