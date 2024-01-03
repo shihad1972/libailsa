@@ -1,7 +1,7 @@
 Source: libailsa
 Section: devel
 Priority: optional
-Build-Depends: debhelper-compat (= 12) dh-autoreconf
+Build-Depends: debhelper-compat (= 12), dh-autoreconf
 Maintainer: Iain M Conochie <iain@ailsatech.net>
 Standards-Version: 4.5.1
 Homepage: https://github.com/shihad1972/libailsa
