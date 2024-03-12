@@ -1,4 +1,4 @@
-libailsa (0.2.2-2) UNRELEASED; urgency=medium
+libailsa (0.2.2-3) UNRELEASED; urgency=medium
 
   [ Iain M. Conochie ]
   * Initial release
@@ -20,4 +20,7 @@ libailsa (0.2.2-2) UNRELEASED; urgency=medium
 
   [ Iain M Conochie ]
   * Added ailsa_list_get_member function
+
+  [ Iain M Conochie]
+  * Added debian distro to package name
  -- Iain M Conochie <iain@ailsatech.net>  Sun, 10 Dec 2023 22:47:05 +0000
