@@ -39,4 +39,4 @@ DEB_MAJOR_VERSION=$(cat /etc/debian_version | awk -F '.' '{print $1}')
 DEB_MINOR_VERSION=$(cat /etc/debian_version | awk -F '.' '{print $2}')
 DEB_STRING="deb${DEB_MAJOR_VERSION}u${DEB_MINOR_VERSION}"
 
-sed -E -i "s/\(([0-9]\.)+[0-9]-[0-9]/&-${DEB_STRING}/" debian/changelog
+sed -E -i "s/\(([0-9]\.)+[0-9]-[0-9]/&+${DEB_STRING}/" debian/changelog
