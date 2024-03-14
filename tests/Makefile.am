@@ -1,5 +1,5 @@
 if HAVE_CHECK
-TESTS = check_kv check_ailsa_list check_kv_list
+TESTS = check_kv check_ailsa_list check_kv_list check_b64
 EXTRA_DIST = mock.txt
 check_PROGRAMS = $(TESTS)
 AM_CPPFLAGS = -DTESTFILE_DIR='"$(abs_top_srcdir)/tests/"'
