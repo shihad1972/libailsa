@@ -347,4 +347,13 @@ int
 ailsa_ldap_mod_str_pack(LDAPMod *mod, int type, char *cn, char **values);
 # endif // HAVE LIBLDAP
 
+// Base64 functions
+
+unsigned char *
+ailsa_b64_encode(const unsigned char *str, size_t len);
+
+unsigned char *
+ailsa_b64_decode(const unsigned char *in);
+
+
 #endif // __AILSA_H__

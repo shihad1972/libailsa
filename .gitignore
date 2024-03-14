@@ -4,6 +4,7 @@ tests/Makefile
 tests/check_kv
 tests/check_ailsa_list
 tests/check_kv_list
+tests/check_b64
 include/config.h
 lib/*.o
 lib/*.a

@@ -12,7 +12,7 @@ lib libs: $(lib_LIBRARIES)
 $(lib_LIBRARIES): libailsa.a(data.o) libailsa.a(generic.o) \
 		libailsa.a(sql.o) libailsa.a(networking.o) \
 		libailsa.a(logging.o) libailsa.a(ailsa_kv_s.o) \
-		libailsa.a(ldap.o)
+		libailsa.a(b64.o) libailsa.a(ldap.o)
 
 libailsa.a(data.o): data.o
 	$(AR) $(ARFLAGS) $@ $<
@@ -30,6 +30,9 @@ libailsa.a(logging.o): logging.o
 	$(AR) $(ARFLAGS) $@ $<
 
 libailsa.a(ailsa_kv_s.o):	ailsa_kv_s.o
+	$(AR) $(ARFLAGS) $@ $<
+
+libailsa.a(b64.o):	b64.o
 	$(AR) $(ARFLAGS) $@ $<
 
 libailsa.a(ldap.o):	ldap.o

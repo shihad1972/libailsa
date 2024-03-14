@@ -80,7 +80,8 @@ START_TEST(check_kv_list)
 }
 END_TEST
 
-Suite * kv_suite(void)
+Suite *
+kv_suite(void)
 {
         Suite *s;
         TCase *ailsa;

@@ -7,7 +7,7 @@ LIBDIR = lib
 TESTDIR = tests
 SUBDIRS = $(LIBDIR) $(TESTDIR)
 lib_LIBRARIES = libailsa.a
-test_PROGRAMS = check_kv check_ailsa_list check_kv_list
+test_PROGRAMS = check_kv check_ailsa_list check_kv_list check_b64
 
 all: $(lib_LIBRARIES) $(test_PROGRAMS)
 
