@@ -1,18 +1,18 @@
 CFLAGS += -std=c99 -W -Wall -Wshadow -Wcast-qual -Wwrite-strings -D_XOPEN_SOURCE=700 -g
-CPPFLAGS += -I../include/
+CPPFLAGS += -I../include/ -I/usr/include/uuid/
 
 lib_LIBRARIES = libailsa.a
 
 # Adding ldap
 CFLAGS += -DLDAP_DEPRECATED
-LDLIBS += -lldap
+LDLIBS += -lldap -luuid
 
 lib libs: $(lib_LIBRARIES)
 
 $(lib_LIBRARIES): libailsa.a(data.o) libailsa.a(generic.o) \
 		libailsa.a(sql.o) libailsa.a(networking.o) \
 		libailsa.a(logging.o) libailsa.a(ailsa_kv_s.o) \
-		libailsa.a(b64.o) libailsa.a(ldap.o)
+		libailsa.a(b64.o) libailsa.a(ldap.o) libailsa.a(uuid.o)
 
 libailsa.a(data.o): data.o
 	$(AR) $(ARFLAGS) $@ $<
@@ -36,6 +36,9 @@ libailsa.a(b64.o):	b64.o
 	$(AR) $(ARFLAGS) $@ $<
 
 libailsa.a(ldap.o):	ldap.o
+	$(AR) $(ARFLAGS) $@ $<
+
+libailsa.a(uuid.o):	uuid.o
 	$(AR) $(ARFLAGS) $@ $<
 
 .PHONY:	clean

@@ -29,10 +29,12 @@ AC_TYPE_SIZE_T
 AC_CHECK_FUNCS([memset strchr strstr])
 
 AX_LIB_LDAP
+AX_LIB_UUID
 PKG_CHECK_MODULES([CHECK], [check >= 0.9.4], [HAVE_CHECK="true"], [HAVE_CHECK="false"])
 
 AM_CONDITIONAL([HAVE_LIBLDAP], [test x"$HAVE_LIBLDAP" = xtrue])
 AM_CONDITIONAL([HAVE_CHECK], [test x"$HAVE_CHECK" = xtrue])
+AM_CONDITIONAL([HAVE_LIBUUID], [test x"$HAVE_LIBUUID" = "xtrue"])
 
 AC_CONFIG_FILES([Makefile
                  lib/Makefile

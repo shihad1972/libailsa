@@ -12,3 +12,10 @@ AM_LDFLAGS +=  $(LDAP_LDFLAGS)
 LIBS += $(LDAP_LIBS)
 libailsa_la_SOURCES += ldap.c
 endif
+
+if HAVE_LIBUUID
+AM_CPPFLAGS += $(UUID_CPPFLAGS)
+AM_LDFLAGS += $(UUID_LDFLAGS)
+LIBS += $(UUID_LIBS)
+libailsa_la_SOURCES += uuid.c
+endif
